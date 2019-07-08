@@ -1,0 +1,11 @@
+#include "ReplyType.h"
+
+ReplyType::ReplyType()
+{
+	//ctor
+}
+
+ReplyType::~ReplyType()
+{
+	//dtor
+}

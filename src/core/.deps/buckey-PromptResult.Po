@@ -1,0 +1,6 @@
+core/buckey-PromptResult.o: core/PromptResult.cpp \
+ /usr/include/stdc-predef.h ../include/core/PromptResult.h
+
+/usr/include/stdc-predef.h:
+
+../include/core/PromptResult.h:
