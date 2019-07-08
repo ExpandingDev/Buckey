@@ -34,3 +34,4 @@
 # Automake stuff
 *.deps
 *.Po
+*.in
