@@ -1,0 +1,21 @@
+/**
+    \page Text Filter Dictionaries
+    Many TextFilter classes/objects utilize a simple single replacement dictionary to parse in their replacement rules.
+    Recommended file extensions for TextFilter dictionaries include: `.txt`, `.rules`, `.filter` (please avoid `.dict` because of CMU Sphinx's `.dict` filetype').
+    The dictionary file is broken up into lines at each new line.
+    A line starting with a pound/hash sign `#` is considered a comment and is ignored.
+    A line containing a single replacement rule should consist of two quoted strings (quoted with a double quote character ") separated by an equals sign.
+    The quoted string to the left is the regex matching rule, and the quoted string on the right is the replacement string.
+    Any double quote chracters (") within the matching regex or replacement string should be escaped with a backslash preceeding the double quote character (`\"`).
+    Example line:
+    >"matching regex"="replacement string"
+    The matching regex may be any regex string you would type into a C/C++ program using the standard library regex (NOTE: Because of this, look behinds are not supported :( ).
+
+    Example file:
+    >"one"="1"
+    >"two"="2"
+    >"three"="3"
+    >#This is a comment
+    >"$"="dollars"
+    >"USD"="united states dollars"
+*/

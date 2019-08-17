@@ -1,0 +1,2 @@
+grammar dynamic-test;
+public <command> = (switch to <$modeList>) {switch} | (hello <$name>) {greet};

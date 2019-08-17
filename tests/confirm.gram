@@ -1,0 +1,4 @@
+#JSGF V1.0;
+grammar confirm;
+
+public <input> = yes {1} | no {0};

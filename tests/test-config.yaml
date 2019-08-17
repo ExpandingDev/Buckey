@@ -1,0 +1,4 @@
+use-sphinx: yes
+sphinx-log: /dev/null
+sphinx-device: "plughw:CARD=Headset,DEV=0"
+max-decoders: 2
