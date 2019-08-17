@@ -22,7 +22,7 @@ AC_FUNC_STRNLEN
 
 #Check for yaml-cpp
 AC_LANG([C++])
-PKG_CHECK_MODULES([YAMLXX],[yaml-cpp], AC_MSG_RESULT([Found yaml-cpp]), AC_MSG_ERROR([Could not find yaml-cpp! Make sure it is installed!]))
+PKG_CHECK_MODULES([YAMLXX],[yaml-cpp >= 0.6.2], AC_MSG_RESULT([Found yaml-cpp]), AC_MSG_ERROR([Could not find yaml-cpp! Make sure it is installed!]))
 
 #Check for pocketsphinx
 PKG_CHECK_MODULES([POCKETSPHINX],[pocketsphinx], AC_MSG_RESULT([Found pocketsphinx]), AC_MSG_ERROR([Could not find pocketsphinx! Make sure it is installed!]))
