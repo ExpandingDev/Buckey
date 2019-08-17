@@ -12,4 +12,4 @@ SUBDIRS = . core tts sphinx filters
 
 buckey_CPPFLAGS = -I$(top_srcdir)/include/ -I$(top_srcdir)/include/core/ -I$(top_srcdir)/include/filters/ -I$(top_srcdir)/include/tts/ -I$(top_srcdir)/include/sphinx/ $(POCKETSPHINX_CFLAGS) $(SPHINXBASE_CFLAGS) $(MIMIC_CFLAGS) $(JSGFKITXX_CFLAGS) $(YAMLXX_CFLAGS) $(SDL2_CFLAGS) $(SDL2_mixer_CFLAGS) -I$(CPPFS_INCLUDE)
 AM_LDFLAGS = -lpthread $(SPHINXBASE_LIBS) $(POCKETSPHINX_LIBS) $(YAMLXX_LIBS) $(MIMIC_LIBS) $(CPPFS_LD) $(SDL2_LIBS) $(SDL2_mixer_LIBS)
-LDADD = $(JSGFKITXX_LIBS) $(MIMIC_LIBS)
+LDADD = $(JSGFKITXX_LIBS) $(MIMIC_LIBS) $(YAMLXX_LIBS)
