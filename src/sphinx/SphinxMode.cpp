@@ -11,6 +11,7 @@ unsigned long SphinxMode::serviceDisableHandler = 0;
 unsigned long SphinxMode::serviceRegisterHandler = 0;
 std::atomic<bool> SphinxMode::sphinxRunning(false);
 std::atomic<bool> SphinxMode::instanceSet(false);
+std::chrono::high_resolution_clock::time_point SphinxMode::lastToggleTimePoint = std::chrono::high_resolution_clock::now();
 SphinxMode * SphinxMode::instance = nullptr;
 
 SphinxMode * SphinxMode::getInstance() {
@@ -25,6 +26,7 @@ SphinxMode::SphinxMode()
 {
 	name = "pyramid";
 	setState(ModeState::STOPPED);
+	lastToggleTimePoint = std::chrono::high_resolution_clock::now();
 }
 
 void SphinxMode::setupAssetsDir(cppfs::FileHandle aDir) {
@@ -112,9 +114,22 @@ void SphinxMode::input(std::string & command, std::vector<std::string> & tags) {
 			}
 		}
 		else if (action == "toggle") {
+			//See how many milliseconds it has been since the last toggle command has been processed.
+			std::chrono::high_resolution_clock::time_point stop = std::chrono::high_resolution_clock::now();
+			int millisDiff = std::chrono::duration_cast<std::chrono::milliseconds>(stop - lastToggleTimePoint).count();
+
+			//Received the toggle command but we already received a toggle command less than TOGGLE_DEBOUNCE_TIME milliseconds ago so ignore this command b/c it is probably a repeat
+			if(millisDiff < TOGGLE_DEBOUNCE_TIME) {
+                return;
+			}
+			else {
+				//Process this toggle command and log the timestamp so we know to ignore repeat commands that come in a few milliseconds
+				lastToggleTimePoint = stop;
+			}
+
 			if(s->inPressToSpeak()) {
 				if(s->pressToSpeakIsPressed()) {
-					std::this_thread::sleep_for(std::chrono::seconds(1));
+					//std::this_thread::sleep_for(std::chrono::seconds(1));
 					s->pressToSpeakButtonUp();
 				}
 				else {

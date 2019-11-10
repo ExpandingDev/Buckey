@@ -1,6 +1,8 @@
 #ifndef SPHINXMODE_H
 #define SPHINXMODE_H
 
+#define TOGGLE_DEBOUNCE_TIME 250
+
 #include <Mode.h>
 #include <ServiceControlEventData.h>
 #include <DynamicGrammar.h>
@@ -43,6 +45,9 @@ class SphinxMode : public Mode
 		static unsigned long serviceEnableHandler;
 		static unsigned long serviceDisableHandler;
 		static unsigned long serviceRegisterHandler;
+
+		///Timestamp of when the most recent toggle speech recognition command was processed.
+		static std::chrono::high_resolution_clock::time_point lastToggleTimePoint;
 };
 
 #endif // SPHINXMODE_H
