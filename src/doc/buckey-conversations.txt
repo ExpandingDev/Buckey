@@ -1,0 +1,26 @@
+/*!
+	\page buckey-conversations Conversations
+	\p User interaction with Buckey is divided into two types:
+    \li Commands
+    \li Conversations
+
+    Commands are based upon the Root JSGF Grammar stored in Buckey::rootGrammar. This Root Grammar is built from all of the enabled Modes and Services that Buckey has.
+    
+    Conversations are controlled by separate Modes. Each Mode can start and carry it's own Conversation that does not comply with the Root Grammar.
+    Only one conversation may be occurring at a time (Modes must wait until the current conversation is over to start a new conversation).
+
+    Text user input is treated as a Command if Buckey is not in a Conversation.
+
+    Example of a command: 
+    \li User: "buckey list enabled modes"
+
+    Examples of a conversation:
+    \li Mode: "Are you sure you want to do this?"
+    \li User: "Yes"
+
+    A Mode can try to start a conversation by calling Buckey::startConversation(). Buckey::startConversation() returns void and will not return until Buckey is able to start a conversation.
+    Once a Mode is finished with a conversation, it must release it using Buckey::endConversation().
+
+    See also \ref buckey-input-output
+*/
+

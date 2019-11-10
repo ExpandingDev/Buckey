@@ -1,0 +1,21 @@
+/*! \mainpage Buckey
+	\p Buckey is a privacy oriented, open-source, hackable personal assistant.
+	\p The main documentation starts at Buckey.h
+	\section Coding Conventions
+	\p It is recommended you follow Buckey's coding conventions for consistency, readability, and re-usability.
+
+	\li Files, Classes and method names are named with PascalCasing (the first letter to every word is a capital).
+	\li Local variables are named in camelCase (the first letter is not capitalized, but the following first letters of later words are capitalized).
+	\li Do not use snake_case.
+	\li Please use the .cpp extension for C++ source files and the .c extension for C source files.
+	\li Please use the .hpp extension for C++ header files and the .h extension for C header files.
+	\li Please make use of the cppfs library. Yes, it provides many basic functions that could be rewritten in pure C++ and save executable size and memory, however the library provides cross-platform features that would take just as much size and memory to implement.
+	\li Please read \ref event-handling to learn about event handling.
+	\li You will learn that event handlers have to be statically accessible, so it is advisable that you provide a Singleton implementation when creating your own Modes and Services as their behavior will often be controlled by static methods.
+
+	To learn more about how Buckey manages threads and memory, see \ref lifecycle
+
+	To learn more about how Buckey manages Inputs and Outputs, see \ref buckey-input-output
+
+    To learn more about how to add features to Buckey, see \ref buckey-mode-vs-service
+*/

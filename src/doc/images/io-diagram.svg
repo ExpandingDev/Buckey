@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="148.48529mm"
+   height="179.01213mm"
+   viewBox="0 0 148.48529 179.01213"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.1 r15371"
+   sodipodi:docname="io-diagram.svg"
+   inkscape:export-filename="/home/tyler/Documents/Programming/Projects/Buckey/src/doc/io-diagram.svg.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.4"
+     inkscape:cx="238.8164"
+     inkscape:cy="277.82844"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="866"
+     inkscape:window-x="0"
+     inkscape:window-y="31"
+     inkscape:window-maximized="1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-12.313904,-0.02960955)">
+    <rect
+       style="fill:#ffffff;stroke:#000000;stroke-width:0.31862205"
+       id="rect3947"
+       width="148.16667"
+       height="178.69351"
+       x="12.473215"
+       y="0.18892057" />
+    <rect
+       id="rect3761"
+       width="53.99807"
+       height="48.38541"
+       x="64.13987"
+       y="13.422216"
+       style="fill:#ffffff;stroke:#000000;stroke-width:0.25495666" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:4.39533758px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.10988344"
+       x="90.487457"
+       y="18.881845"
+       id="text3682"><tspan
+         sodipodi:role="line"
+         x="90.487457"
+         y="18.881845"
+         style="text-align:center;text-anchor:middle;stroke-width:0.10988344"
+         id="tspan3684">Text entered through</tspan><tspan
+         sodipodi:role="line"
+         x="90.487457"
+         y="24.376017"
+         style="text-align:center;text-anchor:middle;stroke-width:0.10988344"
+         id="tspan3688">command line</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:4.39533758px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.10988344"
+       x="90.532402"
+       y="29.95833"
+       id="text3682-3"><tspan
+         sodipodi:role="line"
+         x="90.532402"
+         y="29.95833"
+         style="text-align:center;text-anchor:middle;stroke-width:0.10988344"
+         id="tspan3684-6">Text entered through</tspan><tspan
+         sodipodi:role="line"
+         x="90.532402"
+         y="35.452503"
+         style="text-align:center;text-anchor:middle;stroke-width:0.10988344"
+         id="tspan3688-7">UNIX socket</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:4.39533758px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.10988344"
+       x="90.799683"
+       y="40.916374"
+       id="text3682-3-5"><tspan
+         sodipodi:role="line"
+         x="90.799683"
+         y="40.916374"
+         style="text-align:center;text-anchor:middle;stroke-width:0.10988344"
+         id="tspan3688-7-5">Text entered through</tspan><tspan
+         sodipodi:role="line"
+         x="90.799683"
+         y="46.410545"
+         style="text-align:center;text-anchor:middle;stroke-width:0.10988344"
+         id="tspan3734">web interface</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:4.39533758px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.10988344"
+       x="91.066948"
+       y="51.607162"
+       id="text3682-3-5-6"><tspan
+         sodipodi:role="line"
+         x="91.066948"
+         y="51.607162"
+         style="text-align:center;text-anchor:middle;stroke-width:0.10988344"
+         id="tspan3688-7-5-2">Text entered through</tspan><tspan
+         sodipodi:role="line"
+         x="91.066948"
+         y="57.101334"
+         style="text-align:center;text-anchor:middle;stroke-width:0.10988344"
+         id="tspan3757">voice commands</tspan></text>
+    <rect
+       style="fill:#ffffff;stroke:#000000;stroke-width:0.26458332"
+       id="rect3763"
+       width="53.993259"
+       height="9.0823488"
+       x="64.13987"
+       y="4.3398647" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:5.8884511px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.14721127"
+       x="75.963448"
+       y="10.818396"
+       id="text3767"><tspan
+         sodipodi:role="line"
+         id="tspan3765"
+         x="75.963448"
+         y="10.818396"
+         style="stroke-width:0.14721127">Text Input</tspan></text>
+    <text
+       id="text3918"
+       y="146.27049"
+       x="109.91129"
+       style="font-style:normal;font-weight:normal;font-size:4.72267485px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.11806688"
+       xml:space="preserve"><tspan
+         style="stroke-width:0.11806688"
+         y="146.27049"
+         x="109.91129"
+         id="tspan3916"
+         sodipodi:role="line">In conversation</tspan></text>
+    <text
+       id="text3922"
+       y="143.11125"
+       x="65.795563"
+       style="font-style:normal;font-weight:normal;font-size:4.04694366px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.10117359"
+       xml:space="preserve"><tspan
+         style="text-align:end;text-anchor:end;stroke-width:0.10117359"
+         y="143.11125"
+         x="65.795563"
+         id="tspan3920"
+         sodipodi:role="line">Not in</tspan><tspan
+         id="tspan3924"
+         style="text-align:end;text-anchor:end;stroke-width:0.10117359"
+         y="148.16994"
+         x="65.795563"
+         sodipodi:role="line">conversation</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.23230056px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 80.375886,64.945012 h 15.768901 v 14.215894 h 5.879933 L 88.393972,89.668305 75.164131,79.469947 l 5.746295,-0.08105 z"
+       id="path3789"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccccccc" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:6.48242474px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.16206062"
+       x="58.843285"
+       y="132.11047"
+       id="text3812"><tspan
+         sodipodi:role="line"
+         id="tspan3810"
+         x="58.843285"
+         y="132.11047"
+         style="stroke-width:0.16206062">Add to InputQue</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.23230056px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 80.224834,101.11566 h 15.768901 v 14.2159 h 5.879935 l -13.63075,10.50739 -13.229841,-10.19835 5.746295,-0.0811 z"
+       id="path3789-1"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccccccc" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:6.48242474px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.16206062"
+       x="43.608002"
+       y="95.62616"
+       id="text3812-2"><tspan
+         sodipodi:role="line"
+         id="tspan3810-7"
+         x="43.608002"
+         y="95.62616"
+         style="stroke-width:0.16206062">Buckey::passInput(std::string)</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.12503028px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 95.44537,138.86572 4.58547,-2.64743 6.13228,10.62142 1.70985,-0.98718 0.56882,10.13906 -8.24637,-5.39856 1.63598,-1.02536 z"
+       id="path3789-1-0-9"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccccccc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.12503028px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 80.51531,139.05471 -4.585471,-2.64743 -6.13228,10.62143 -1.70985,-0.98719 -0.568819,10.13907 8.246368,-5.39857 -1.635978,-1.02535 z"
+       id="path3789-1-0-9-3"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccccccc" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:4.00189781px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.10004745"
+       x="20.605917"
+       y="165.31177"
+       id="text3812-2-6"><tspan
+         sodipodi:role="line"
+         id="tspan3810-7-0"
+         x="20.605917"
+         y="165.31177"
+         style="stroke-width:0.10004745">Buckey::passCommand(std::string)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:4.98071384px;line-height:1.25;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.12451784"
+       x="119.39777"
+       y="163.28647"
+       id="text3912"><tspan
+         sodipodi:role="line"
+         id="tspan3910"
+         x="119.39777"
+         y="163.28647"
+         style="text-align:center;text-anchor:middle;stroke-width:0.12451784">Handled by current</tspan><tspan
+         sodipodi:role="line"
+         x="119.39777"
+         y="169.51236"
+         style="text-align:center;text-anchor:middle;stroke-width:0.12451784"
+         id="tspan3914">Conversation</tspan></text>
+  </g>
+</svg>

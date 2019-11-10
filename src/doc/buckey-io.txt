@@ -1,0 +1,13 @@
+/*!
+	\page buckey-input-output Buckey IO
+	\p The Buckey class handles a large range of inputs and outputs, the flow of some of these IO events is depicted below:
+
+	\image html io-diagram.svg.png
+
+    When the user inputs text to Buckey, either through the console, a UNIX socket, web interface, or voice commands, the string is immediately passed to Buckey::passInput(std::string).
+    This method then enters the input text into the InputQue. Buckey has a thread instance of Buckey::watchInputQue that runs continuously and checks to see if anything was entered into the Input Que.
+    If Buckey is not in a Conversation, the InputQue assumes the input is a command input and removes it from the que and passes it to Buckey::passCommand. If Buckey is in a Conversation, then the Mode that is currently holding the Conversation is responsible for checking and processing input from the Input Que.
+
+    See \ref buckey-conversations for more information about Conversations.
+*/
+

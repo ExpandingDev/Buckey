@@ -1,0 +1,25 @@
+/*!
+	\page buckey-event-handlers List of Buckey's Events
+	\p The Buckey class orchestrates the operation of the system, mainly through events.
+	Services and Modes can attach listeners to these events to drive their own unique behavior.
+	This page provides a list of string values for each of Buckey event types:
+
+	\li ONINPUT "onInputEvent" - Called when the user passes input to Buckey.
+	\li ONOUTPUT "onOutputEvent" - Called when Buckey passes output to the user.
+
+	\li ONCONVERSATIONSTART "onConversationStart" - Called when a conversation starts.
+	\li ONCONVERSATIONEND "onConversationEnd - Called when a conversation ends.
+	\li ONENTERPROMPT "onEnterPrompt" - Called when a conversation enters a prompt.
+	\li ONEXITPROMPT "onExitPrompt" - Called when a prompt is exited out (may be timed out!).
+
+	\li ONMODEREGISTER "onModeRegisterEvent" - Called when a Mode is registered.
+	\li ONMODEENABLE "onModeEnableEvent" - Called when a Mode is enabled.
+	\li ONMODEDISABLE "onModeDisableEvent" - Called when a Mode is disabled.
+
+	\li ONSERVICEREGISTER "onServiceRegisterEvent" - Called when a Service is registered.
+	\li ONSERVICEENABLE "onServiceEnableEvent" - Called when a Service is enabled.
+	\li ONSERVICEDISABLE "onServiceDisableEvent" - Called when a Service is disabled.
+
+	\li ONFINISHINIT "onFinishInitEvent" - Called once Buckey registers and enables all needed Services and Modes.
+
+*/

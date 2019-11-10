@@ -1,0 +1,21 @@
+/*!
+	\page buckey-mode-vs-service Modes and Services
+	\p Buckey is meant to a be a highly configurable and hackable personal assistant.
+    The level of features added to Buckey by the user is controlled through Services and Modes.
+    
+    A Service provides a larger feature that can be used for many specific types of smaller features.
+
+    A Mode provides a specific set of features.
+
+    For example:
+    \li Service: Text to speech
+    \li Mode: Speaking the time of day to the user is a Mode
+    \li Service: A GUI that the user can interact with
+    \li Mode: Displaying a reference image in the GUI when the user requests it
+
+    Services are meant to be larger "chunks" of features that may take more computational power. memory, and radically change Buckey's behaiour.
+    Modes are meant to fill niche roles and give Buckey its usability and application in life and are generally smaller.
+    
+    At some point, Modes will be able to be created through scripting languages such as Python or JavaScript.
+*/
+
