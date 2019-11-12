@@ -23,7 +23,9 @@
 #include "cppfs/FileHandle.h"
 #include "cppfs/fs.h"
 
+///TODO: Make RUNNING_DIR not hard coded
 #define RUNNING_DIR "/home/tyler/Buckey"
+
 #define LOCK_FILE "buckey.lock"
 #define BUCKEY_VERSION "0.0.1"
 

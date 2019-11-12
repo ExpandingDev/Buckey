@@ -53,7 +53,7 @@
 #define ONCONVERSATIONEND "onConversationEndEvent"
 
 #define ONENTERPROMPT "onEnterPromptEvent"
-#define ONEXITPROMPT "onExitPrompEvent"
+#define ONEXITPROMPT "onExitPromptEvent"
 
 #define ONMODEREGISTER "onModeRegisterEvent"
 #define ONMODEENABLE "onModeEnableEvent"

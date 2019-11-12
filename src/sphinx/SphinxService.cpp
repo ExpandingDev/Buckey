@@ -95,10 +95,10 @@ void SphinxService::start() {
 	}
 
 	startPressToSpeakRecognition(config["speech-device"].as<std::string>());
-    //TODO: Set listeners
+    ///TODO: Set listeners
 
     onEnterPromptEventHandlerID = Buckey::getInstance()->addListener("onEnterPromptEvent", onEnterPromptEventHandler);
-    onConversationEndEventHandlerID = Buckey::getInstance()->addListener("onConversationEndEvent", onConversationEndEventHandler);
+    onConversationEndEventHandlerID = Buckey::getInstance()->addListener("onExitPromptEvent", onConversationEndEventHandler);
 
     setState(ServiceState::RUNNING);
 }
@@ -106,7 +106,7 @@ void SphinxService::start() {
 void SphinxService::stop() {
 	if(getState() == ServiceState::RUNNING) {
 		Buckey::getInstance()->unsetListener("onEnterPromptEvent", onEnterPromptEventHandlerID);
-		Buckey::getInstance()->unsetListener("onConversationEndEvent", onConversationEndEventHandlerID);
+		Buckey::getInstance()->unsetListener("onExitPromptEvent", onConversationEndEventHandlerID);
 		stopRecognition();
 	}
 	setState(ServiceState::STOPPED);
@@ -152,14 +152,17 @@ bool SphinxService::startRecordingToFile() {
 
 void SphinxService::onEnterPromptEventHandler(EventData * data, std::atomic<bool> * done) {
 	PromptEventData * d = (PromptEventData *) data;
+	Buckey::logInfo("enter prompt event handler");
 	if(d->getType() == "confirm") {
         SphinxService::getInstance()->updateJSGFPath(SphinxService::getInstance()->assetsDir.open("confirm.gram").path());
         SphinxService::getInstance()->applyUpdates();
+        Buckey::logInfo("switched grammars");
 	}
 	done->store(true);
 }
 
 void SphinxService::onConversationEndEventHandler(EventData * data, std::atomic<bool> * done) {
+	Buckey::logInfo("exit prompt event handler");
 	SphinxService::getInstance()->setJSGF(Buckey::getInstance()->getRootGrammar());
 	SphinxService::getInstance()->applyUpdates();
 	done->store(true);
@@ -178,6 +181,7 @@ bool SphinxService::recordAudioToFile(std::string pathToAudioFile) {
 		return true;
 	}
 }
+
 ///Static loop that runs during non-continuous/push to speak recognition
 void SphinxService::manageNonContinuousDecoders(SphinxService * sr) {
 	//Lock all mutexes and flags first
@@ -212,6 +216,7 @@ void SphinxService::manageNonContinuousDecoders(SphinxService * sr) {
 
     sr->currentDecoderIndex.store(0);
     Buckey::logInfo("Starting Utterances...");
+
     // Start up all of the utterances
     for(SphinxDecoder * sd : sr->decoders) {
         sd->startUtterance();
@@ -262,7 +267,7 @@ void SphinxService::manageNonContinuousDecoders(SphinxService * sr) {
 			if(frameCount < 0 ) {
 				if(sr->source == SphinxHelper::DEVICE) {
 					Buckey::logError("Failed to read from audio device for sphinx recognizer!");
-					// TODO: Maybe fail a bit more gracefully
+					/// TODO: Maybe fail a bit more gracefully
 					sr->killThreads();
 					break;
 				}
@@ -274,7 +279,7 @@ void SphinxService::manageNonContinuousDecoders(SphinxService * sr) {
 
 			// Check to make sure our current decoder has not errored out
 			if(sr->decoders[sr->currentDecoderIndex]->state == SphinxHelper::DecoderState::ERROR) {
-			Buckey::logError("Decoder is errored out! Trying next decoder...");
+				Buckey::logError("Decoder is errored out! Trying next decoder...");
 				bool found = false;
 				for(unsigned short i = sr->currentDecoderIndex; i < sr->maxDecoders - 1; i++) {
 					if(sr->decoders[sr->currentDecoderIndex]->isReady()) {
@@ -288,6 +293,11 @@ void SphinxService::manageNonContinuousDecoders(SphinxService * sr) {
 					sr->killThreads();
 					break;
 				}
+			}
+
+			// Check to make sure our current decoder is still ready to process speech (make sure the utterance has been started)
+			if(sr->decoders[sr->currentDecoderIndex]->state != SphinxHelper::DecoderState::UTTERANCE_STARTED) {
+				sr->decoders[sr->currentDecoderIndex]->startUtterance();
 			}
 
 			// Process the frames

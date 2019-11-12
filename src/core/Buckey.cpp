@@ -555,6 +555,8 @@ void Buckey::reply(std::string message, ReplyType t) {
 		send(socket2Handle, output, sizeof(output), MSG_DONTWAIT); // Don't block in case the client disconnects, this could lead to the suddenly disconnecting client eating up all available connections.
 	}
 
+	Buckey::logInfo(out);
+
 	triggerEvents(ONOUTPUT, new OutputEventData(message, t));
 }
 

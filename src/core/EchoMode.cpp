@@ -37,7 +37,7 @@ void EchoMode::input(std::string & command, std::vector<std::string> & tags) {
 	buckey->reply("pong", ReplyType::CONVERSATION);
 	buckey->startConversation();
 
-	PromptResult * p = Buckey::getInstance()->promptConfirmation("Are you sure?");
+	PromptResult * p = Buckey::getInstance()->promptConfirmation("Are you sure?", 10);
 	if(p->timedOut()) {
 		buckey->reply("Result timed out", ReplyType::CONVERSATION);
 	}
