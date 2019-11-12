@@ -172,7 +172,7 @@ void SphinxDecoder::reloadDecoder() {
     //bool newDecoder = state == SphinxHelper::DecoderState::NOT_INITIALIZED; // If the decoder wasn't created before, we'll need to make a new one now
 
     state = SphinxHelper::DecoderState::NOT_INITIALIZED;
-    //TODO: Ensure that the dictionary is preserved after reinitializing, current all added words will be removed after reinitializing
+    ///TODO: Ensure that the dictionary is preserved after reinitializing, current all added words will be removed after reinitializing
 
     if(recognitionMode == SphinxHelper::SearchMode::LM) {
 		//TODO: Use cmd_ln_set_r() instead of making a new config object. This is not a memory leak b/c sphinxbase frees it internally, but it would still have memory and time.

@@ -294,12 +294,12 @@ void SphinxService::manageNonContinuousDecoders(SphinxService * sr) {
 					break;
 				}
 			}
-
+/*
 			// Check to make sure our current decoder is still ready to process speech (make sure the utterance has been started)
 			if(sr->decoders[sr->currentDecoderIndex]->state != SphinxHelper::DecoderState::UTTERANCE_STARTED) {
 				sr->decoders[sr->currentDecoderIndex]->startUtterance();
 			}
-
+*/
 			// Process the frames
 			sr->voiceDetected.store(sr->decoders[sr->currentDecoderIndex]->processRawAudio(adbuf, frameCount));
 
@@ -740,7 +740,7 @@ void SphinxService::applyUpdates() {
     	Buckey::logInfo("Applying updates while not recognizing...");
 		for(unsigned short i = 0; i < decoders.size(); i++) {
 			decoders[i]->reloadDecoder();
-			//decoders[i]->startUtterance();
+			decoders[i]->startUtterance();
 
 			if(i == 0) { // Select the first decoder that we update so it is ready ASAP
 				decoderIndexLock.lock();
