@@ -436,8 +436,10 @@ void Buckey::manageUnixSocket() {
 								s[0] = ' ';
 								b->passCommand(s);
 							}
+							else {
+								b->passInput(s);
+							}
 						}
-						b->passInput(s);
 						s = "";
 						currentReadSize = 0;
 					}
@@ -470,15 +472,14 @@ void Buckey::passCommand(std::string command) {
 	MatchResult m = rootGrammar->match(command);
 	std::cout << command << std::endl;
 
-	if(m.matches) {
-		std::vector<std::string> tags = m.getMatchingTags();
-		for(std::vector<std::string>::iterator i = tags.begin(); i != tags.end(); i++) {
+	if(m.matches) { //Process the user input if it matches a command
+		std::vector<std::string> tags = m.getMatchingTags(); //Get the tags that it matches
+		for(std::vector<std::string>::iterator i = tags.begin(); i != tags.end(); i++) { // Iterate until we find the tag that tells use which mode this input matches (MODE_TAG_PREFIX)
 			std::string s = *i;
-			if(StringHelper::stringStartsWith(s, MODE_TAG_PREFIX)) {
+			if(StringHelper::stringStartsWith(s, MODE_TAG_PREFIX)) { // Found the tag telling us which mode it matches, extract the mode and pass the remaining tags and the input to the correct mode
 				std::string modeName = s.substr(strlen(MODE_TAG_PREFIX), s.length() - strlen(MODE_TAG_PREFIX));
 				std::cout << "Mode: " << modeName << std::endl;
 				tags.erase(i);
-				//tags[0] = modeName;
 				for(modeListEntry m : modes) {
 					if(m.second->getName() == modeName && m.second->getState() == ModeState::STARTED) {
 						m.second->input(command, tags);
@@ -488,7 +489,7 @@ void Buckey::passCommand(std::string command) {
 			}
 		}
 	}
-	else {
+	else { // Output the root grammar for debugging purposes if the user input does not match
 		reply(rootGrammar->getText(), ReplyType::CONSOLE);
 		reply("Matches tags: " + StringHelper::concatenateStringVector(m.getMatchingTags(), ','), ReplyType::CONSOLE);
 	}
@@ -597,8 +598,6 @@ PromptResult * Buckey::promptConfirmation(const std::string & prompt, int timeou
 	triggerEvents(ONENTERPROMPT, new PromptEventData("confirm"));
 	std::chrono::system_clock::time_point timeoutPassed = std::chrono::system_clock::now() + std::chrono::seconds(timeout);
 
-	///TODO: Get sphinx to switch JSGF grammars and listen for yes/no/confirmation dialogue.
-
 	bool timedOut = false;
 	bool found = false;
     while(!killed.load() && !found) {
@@ -610,7 +609,8 @@ PromptResult * Buckey::promptConfirmation(const std::string & prompt, int timeou
 		inputQueMutex.lock();
 		if(!inputQue.empty()) {
 			found = true;
-			result=inputQue.front();
+			result = inputQue.front();
+			Buckey::reply("Got result: " + result, ReplyType::CONSOLE);
 			inputQue.pop();
 			inputQueMutex.unlock();
 			break;
