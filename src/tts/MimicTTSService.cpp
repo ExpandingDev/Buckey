@@ -250,6 +250,8 @@ void MimicTTSService::addOnSpeechPrepared(void (*handler)(EventData *, std::atom
 void MimicTTSService::start() {
 	if(getState() != ServiceState::RUNNING && getState() != ServiceState::STARTING) {
     	setState(ServiceState::STARTING);
+    	Buckey::logDebug("Loading mimic service config");
+		config = YAML::LoadFile(configDir.open("mimic.conf").path());
     	syslog(LOG_INFO, "Initializing Mimic core...");
 		mimic_init();
 
@@ -258,8 +260,9 @@ void MimicTTSService::start() {
 		// Default voice file
 		std::string v = "/home/tyler/Documents/Programming/Libraries/mimic1/voices/mycroft_voice_4.0.flitevox";
 
-		if(MimicTTSService::config["voice-file"]) {
-			v = MimicTTSService::config["voice-file"].as<std::string>();
+		if(config["voice-file"]) {
+			Buckey::logInfo("Config has voice-file");
+			v = config["voice-file"].as<std::string>();
 		}
 
 		loadPreparedAudioList();
