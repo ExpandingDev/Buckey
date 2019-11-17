@@ -23,8 +23,15 @@
 #include "cppfs/FileHandle.h"
 #include "cppfs/fs.h"
 
-///TODO: Make RUNNING_DIR not hard coded
-#define RUNNING_DIR "/home/tyler/Buckey"
+char RUNNING_DIR[200] = "~/Buckey";
+
+//Determine the correct path separator
+#ifdef _WIN32
+#define PATH_SEPARATOR "\\"
+#endif // _WIN32
+#ifdef __linux__
+#define PATH_SEPARATOR "/"
+#endif // __linux__
 
 #define LOCK_FILE "buckey.lock"
 #define BUCKEY_VERSION "0.0.1"
@@ -43,6 +50,13 @@ void daemonize();
 bool setupDirectories();
 void registerSignalHandles();
 void badPipeHandler(int );
+
+///This determines the correct directory that all Buckey instances will run in.
+void resolveRunningDirectory() {
+	strcpy(RUNNING_DIR, getenv("HOME"));
+	strcat(RUNNING_DIR, PATH_SEPARATOR);
+	strcat(RUNNING_DIR, "Buckey");
+}
 
 void registerSignalHandles() {
 	signal(SIGCHLD,SIG_IGN); /* ignore child */
@@ -336,6 +350,8 @@ int main(int argc, char *argv[])
 		std::cout << "Buckey version " << VERSION << std::endl;
 		return 0;
 	}
+
+	resolveRunningDirectory();
 
 	cppfs::FileHandle runningDirectory = cppfs::fs::open(RUNNING_DIR);
 	if(!runningDirectory.isDirectory()) {
