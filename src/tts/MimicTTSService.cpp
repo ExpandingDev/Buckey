@@ -68,6 +68,9 @@ void MimicTTSService::setupConfig(cppfs::FileHandle cDir) {
 void MimicTTSService::setupAssets(cppfs::FileHandle aDir) {
 	cppfs::FileHandle pAudioList = assetsDir.open("preparedAudio.list");
 	pAudioList.writeFile("# MIMIC TTS Service Prepared Audio Files List\n");
+
+	///TODO: Ask the user to select a voice file to use for TTS
+	std::string downloadURL = "https://github.com/MycroftAI/mimic1/raw/development/voices/cmu_us_slt_hts.htsvoice";
 }
 
 
