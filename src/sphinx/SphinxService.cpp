@@ -42,7 +42,7 @@ void SphinxService::setupConfig(cppfs::FileHandle cDir) {
 	n["max-frame-size"] = 2048;
 	n["hmm-dir"] = "/usr/local/share/pocketsphinx/model/en-us/en-us";
 	n["dict-dir"] = "/usr/local/share/pocketsphinx/model/en-us/cmudict-en-us.dict";
-	n["speech-device"] = "default";
+//	n["speech-device"] = "default";
 	n["default-lm"] = "/usr/local/share/pocketsphinx/model/en-us/en-us.lm.bin";
 	n["max-decoders"] = 2;
 	n["samples-per-second"] = 16000; // Taken from libsphinxad ad.h is usually 16000
@@ -87,14 +87,17 @@ void SphinxService::start() {
     pressToSpeakPressed.store(false);
     config = YAML::LoadFile(configDir.open("decoder.conf").path());
     maxDecoders = config["max-decoders"].as<unsigned int>();
-    deviceName = config["speech-device"].as<std::string>();
+    deviceName = "";
+    if(config["speech-device"]) {
+    	deviceName = config["speech-device"].as<std::string>();
+    }
 
 	for(unsigned short i = 0; i < maxDecoders; i++) {
 		SphinxDecoder * sd = new SphinxDecoder("base-grammar", config["default-lm"].as<std::string>(), SphinxHelper::SearchMode::LM, config["hmm-dir"].as<std::string>(), config["dict-dir"].as<std::string>(), config["logfile"].as<std::string>(), true);
 		decoders.push_back(sd);
 	}
 
-	startPressToSpeakRecognition(config["speech-device"].as<std::string>());
+	startPressToSpeakRecognition(deviceName);
     ///TODO: Set listeners
 
     onEnterPromptEventHandlerID = Buckey::getInstance()->addListener("onEnterPromptEvent", onEnterPromptEventHandler);
@@ -202,7 +205,14 @@ void SphinxService::manageNonContinuousDecoders(SphinxService * sr) {
 
     if (sr->source == SphinxHelper::DEVICE) {
         Buckey::logInfo("Opening audio device for recognition");
-        if((ad = ad_open_dev(sr->deviceName.c_str(), sr->config["samples-per-second"].as<int>())) == NULL) { // DEFAULT_SAMPLES_PER_SEC is taken from libsphinxad ad.h is usually 16000
+        if(sr->deviceName == "") {
+	    if ((ad = ad_open_sps(sr->config["samples-per-second"].as<int>())) == NULL) { // DEFAULT_SAMPLES_PER_SEC is taken from libsphinxad ad.h is usually 16000
+	            Buckey::logError("Failed to open audio device");
+	            sr->recognizing.store(false);
+            	    return;
+	    }
+	}
+	else if((ad = ad_open_dev(sr->deviceName.c_str(), sr->config["samples-per-second"].as<int>())) == NULL) { // DEFAULT_SAMPLES_PER_SEC is taken from libsphinxad ad.h is usually 16000
             Buckey::logError("Failed to open audio device");
             sr->recognizing.store(false);
             return;
@@ -386,8 +396,16 @@ void SphinxService::manageContinuousDecoders(SphinxService * sr) {
         Buckey::logInfo("Opening audio device for recognition");
         // TODO: Use ad_open_dev without pocketsphinx's terrible configuration functions
         //if ((ad = ad_open_dev(NULL,(int) cmd_ln_float32_r(sr->decoders[0]->getConfig(),"-samprate"))) == NULL) {
-        if((ad = ad_open_dev(sr->deviceName.c_str(), sr->config["samples-per-second"].as<int>())) == NULL) { // DEFAULT_SAMPLES_PER_SEC is taken from libsphinxad ad.h is usually 16000
-            Buckey::logError("Failed to open audio device\n");
+        Buckey::logInfo("Opening audio device for recognition");
+        if(sr->deviceName == "") {
+	    if ((ad = ad_open_sps(sr->config["samples-per-second"].as<int>())) == NULL) { // DEFAULT_SAMPLES_PER_SEC is taken from libsphinxad ad.h is usually 16000
+	            Buckey::logError("Failed to open audio device");
+	            sr->recognizing.store(false);
+            	    return;
+	    }
+	}
+	else if((ad = ad_open_dev(sr->deviceName.c_str(), sr->config["samples-per-second"].as<int>())) == NULL) { // DEFAULT_SAMPLES_PER_SEC is taken from libsphinxad ad.h is usually 16000
+            Buckey::logError("Failed to open audio device");
             sr->recognizing.store(false);
             return;
         }
@@ -510,16 +528,16 @@ void SphinxService::manageContinuousDecoders(SphinxService * sr) {
         //And get hypothesis
         if(!sr->voiceDetected && sr->inUtterance) {
 
-			sr->decoderIndexLock.lock();
+	    sr->decoderIndexLock.lock();
             sr->triggerEvents(ON_END_SPEECH, new EventData()); //TODO: Add event data
             sr->inUtterance.store(false);
             sr->decoders[sr->currentDecoderIndex]->ready = false;
             sr->miscThreads.push_back(std::thread(endAndGetHypothesis, sr, sr->decoders[sr->currentDecoderIndex]));
-			sr->decoderIndexLock.unlock();
+	    sr->decoderIndexLock.unlock();
 
             usleep(100); // TODO: Windows portability
 
-			sr->decoderIndexLock.lock();
+	    sr->decoderIndexLock.lock();
             for(unsigned short i = 0; i < sr->maxDecoders; i++) {
                 if(sr->decoders[i]->isReady()) {
                     sr->currentDecoderIndex.store(i);
@@ -551,7 +569,8 @@ void SphinxService::startContinuousDeviceRecognition(std::string device) {
 			deviceName = device;
 		}
 		else {
-			deviceName = config["speech-device"].as<std::string>();
+//			deviceName = config["speech-device"].as<std::string>();
+			device = "";
 		}
 
 		if(recognizerLoop.joinable()) {
@@ -570,11 +589,13 @@ void SphinxService::startPressToSpeakRecognition(std::string device) {
 	Buckey::logInfo("Starting press to speak device recognition");
 	if(!recognizing) {
 		source = SphinxHelper::DEVICE;
+
 		if(device != "") {
 			deviceName = device;
 		}
 		else {
-			deviceName = config["speech-device"].as<std::string>();
+//			deviceName = config["speech-device"].as<std::string>();
+			deviceName = "";
 		}
 
 		if(recognizerLoop.joinable()) {
