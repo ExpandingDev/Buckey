@@ -73,7 +73,6 @@ void MimicTTSService::setupAssets(cppfs::FileHandle aDir) {
 	std::string downloadURL = "https://github.com/MycroftAI/mimic1/raw/development/voices/cmu_us_slt_hts.htsvoice";
 }
 
-
 /**
   * This function is a synchronous function that prepares the words and triggers the onSpeechPrepared event when done.
   */

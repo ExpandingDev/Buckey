@@ -80,7 +80,7 @@ void SphinxMode::input(std::string & command, std::vector<std::string> & tags) {
 	std::string & action = *(tags.begin());
 
 	if(sphinxRunning.load() || b->getServiceState("sphinx") == ServiceState::RUNNING) {
-			SphinxService * s = ((SphinxService *) (b->getService("sphinx")));
+		SphinxService * s = ((SphinxService *) (b->getService("sphinx")));
 		if(action == "pause") {
 			if(s->inPressToSpeak()) {
 				std::this_thread::sleep_for(std::chrono::seconds(1));

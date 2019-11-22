@@ -626,7 +626,7 @@ PromptResult * Buckey::promptConfirmation(const std::string & prompt, int timeou
 	}
 	else {
 		bool * confirm = new bool();
-		if(result == "confirm") {
+		if(result == "confirm") { ///TODO: Process the input to match it against the confirm.gram to accept more than just "confirm"
 			*confirm = true;
 		}
 		else {

@@ -28,10 +28,9 @@ char RUNNING_DIR[200] = "~/Buckey";
 //Determine the correct path separator
 #ifdef _WIN32
 #define PATH_SEPARATOR "\\"
-#endif // _WIN32
-#ifdef __linux__
+#else
 #define PATH_SEPARATOR "/"
-#endif // __linux__
+#endif // Linux and OS X
 
 #define LOCK_FILE "buckey.lock"
 #define BUCKEY_VERSION "0.0.1"
